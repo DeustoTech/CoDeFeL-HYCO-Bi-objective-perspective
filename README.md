@@ -110,11 +110,11 @@ Whenever applicable, configuration files specify:
 If you use this code or the Bi-HYCO methodology in your research, please cite the associated paper.
 
 ```bibtex
-@article{biHYCO,
-  title   = {Bi-Objective Hybrid-Cooperative Learning},
-  author  = {...},
-  journal = {...},
-  year    = {...}
+@article{biccari2026bi,
+  title={Bi-HYCO: Bi-Objective Cooperative Learning for PDE Parameter Identification under Fragmented Observations},
+  author={Biccari, Umberto and Chen, Jun and Morales, Roberto and Zuazua, Enrique},
+  journal={arXiv preprint arXiv:2609.06511},
+  year={2026}
 }
 ```
 
