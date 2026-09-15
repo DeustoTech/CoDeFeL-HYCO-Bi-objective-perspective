@@ -38,47 +38,6 @@ Let
 
 Bi-HYCO considers the cooperation between both models as a **bi-objective optimization problem**, rather than reducing the entire learning task to a single objective from the outset.
 
-Different optimization strategies can then be used to obtain solutions representing different compromises between physical consistency and data-driven accuracy.
-
-## Repository Structure
-
-A typical organization of the repository is:
-
-```text
-.
-├── src/                # Main implementation
-├── experiments/        # Numerical experiments
-├── configs/            # Configuration files and hyperparameters
-├── data/               # Data used in the experiments
-├── results/            # Numerical results
-├── figures/            # Generated figures
-├── requirements.txt    # Python dependencies
-└── README.md
-```
-
-The exact structure may vary depending on the experiment.
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone <repository-url>
-cd <repository-name>
-```
-
-We recommend creating a dedicated Python environment:
-
-```bash
-python -m venv .venv
-```
-
-Activate the environment and install the required dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
 ## Running the Experiments
 
 The numerical experiments can be executed from the corresponding scripts in the `experiments/` directory.
@@ -107,8 +66,6 @@ Whenever applicable, configuration files specify:
 
 ## Citation
 
-If you use this code or the Bi-HYCO methodology in your research, please cite the associated paper.
-
 ```bibtex
 @article{biccari2026bi,
   title={Bi-HYCO: Bi-Objective Cooperative Learning for PDE Parameter Identification under Fragmented Observations},
@@ -117,16 +74,6 @@ If you use this code or the Bi-HYCO methodology in your research, please cite th
   year={2026}
 }
 ```
-
-The complete citation will be updated upon publication.
-
-## Related Work
-
-Bi-HYCO builds upon the original **Hybrid-Cooperative Learning (HYCO)** framework, which introduces cooperative training between physics-based and synthetic models.
-
-## License
-
-Please see the `LICENSE` file for information about the terms of use of this repository.
 
 ## Contact
 
