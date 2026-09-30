@@ -1,80 +1,85 @@
-# Bi-HYCO: Bi-Objective Hybrid-Cooperative Learning
+# Bi-HYCO: Bi-Objective Cooperative Learning for PDE Parameter Identification
 
-This repository contains the implementation and numerical experiments associated with **Bi-HYCO (Bi-Objective Hybrid-Cooperative Learning)**, a multi-objective extension of the HYCO framework for combining physics-based and data-driven models.
+This repository accompanies the paper [*Bi-HYCO: Bi-Objective Cooperative Learning for PDE Parameter Identification under Fragmented Observations*](https://arxiv.org/abs/2609.06511).
+It implements Bi-Objective Hybrid-Cooperative Learning (Bi-HYCO), a framework for reconstructing PDE states and 
+unknown physical parameters when a physics-based solver and a neural surrogate receive different, possibly disjoint, 
+observations. The models communicate only through agreement of their predicted states at unlabeled interaction points.
 
-## Overview
+![Illustrative example of bi-HYCO](bi-HYCO.png)
 
-HYCO is a hybrid modeling strategy in which a **physical model** and a **synthetic/data-driven model** cooperate during training. Rather than incorporating the physical equations directly into the loss of a neural network, the two models are trained as separate components and exchange information through an interaction mechanism.
+## Motivation
 
-**Bi-HYCO** formulates this cooperation from a bi-objective optimization perspective. The two main objectives account for the quality of the physical and synthetic models, while their interaction encourages consistency between their predictions.
+PDE-constrained inverse problems often have incomplete or fragmented observations: different sensors, regions, or data 
+holders may observe different parts of the same physical system. A physics-based model contributes structure and 
+interpretable parameters, while a neural model flexibly learns from data. Neither representation need be sufficient on its own.
 
-The framework is designed for problems involving:
+Standard hybrid methods commonly combine all information in a single loss. Bi-HYCO instead preserves a distinct 
+observational objective for each representation. This makes the tension between fitting the physical observations 
+and fitting the synthetic-model observations explicit, while state interaction lets the models transfer information 
+without centralizing their datasets.
 
-* physics-based and data-driven modeling;
-* partial or fragmented observations;
-* inverse problems and parameter identification;
-* PDE-constrained learning;
-* multi-objective optimization;
-* scientific machine learning.
+## Approach implemented
 
-## Main Features
+Bi-HYCO defines two objectives: one for the physical model and one for the synthetic model. Both include a common 
+interaction loss that compares their predicted states at unlabeled points. These interaction points provide a 
+communication mechanism in the shared state space; they do not add measurements to either dataset.
 
-* Coupling of physical and synthetic models.
-* Bi-objective formulation of the HYCO framework.
-* Flexible treatment of physical, synthetic, and interaction losses.
-* Support for different optimization strategies.
-* Numerical experiments for PDE-based applications.
-* Tools for analyzing the trade-off between competing objectives and approximating Pareto solutions.
+The two objectives form a vector-valued optimization problem. Positive weighted scalarizations yield practical 
+compromises on the Pareto frontier. In the shared-observation setting, the scalarized objective is optimized by 
+alternating physical and synthetic parameter updates. Under the paper’s assumptions and with fixed interaction 
+points, this deterministic alternating core has sufficient decrease, finite sequence length, and converges to a 
+mixed critical point.
 
-## Method
+For fragmented observations, the implementation uses two local units that optimize their own observation-specific 
+objectives and then aggregate their parameter copies through a coordinator, in the spirit of federated averaging. 
+The experiments compare full Bi-HYCO with a vanishing-interaction ablation, PINN, and XPINN references. They address 
+an elliptic transmission inverse problem and a nonlinear annular Navier–Stokes parameter-identification problem, 
+including noise and scalarization studies.
 
-Let
+## Repository contents
 
-* \(u_{\mathrm{phy}}\) denote the prediction of the physical model,
-* \(u_{\mathrm{syn}}\) denote the prediction of the synthetic model,
-* \(\mathcal{L}_{\mathrm{phy}}\) denote the physical objective,
-* \(\mathcal{L}_{\mathrm{syn}}\) denote the synthetic objective, and
-* \(\mathcal{L}_{\mathrm{int}}\) denote an interaction term measuring the discrepancy between the two models.
+| Notebook | Purpose |
+| --- | --- |
+| `Experiment1.ipynb` | Elliptic transmission parameter-identification experiment with fragmented subdomain observations, interaction ablations, scalarization studies, PINN/XPINN references, and visualizations. |
+| `Experiment1 - BI HYCO.ipynb` | Variant of the elliptic Bi-HYCO experiment with expanded comments and settings. |
+| `Experiment2 NS.ipynb` | Annular Navier–Stokes Bi-HYCO experiment, including noise robustness and PINN/XPINN comparisons. |
+| `Experiment2 BI HYCO.ipynb` | Alternative version of the Navier–Stokes Bi-HYCO workflow and output configuration. |
 
-Bi-HYCO considers the cooperation between both models as a **bi-objective optimization problem**, rather than reducing the entire learning task to a single objective from the outset.
+The notebooks create their own result directories, including `results_elliptic2/` for the elliptic experiment and a 
+configured `Experiment*_outputs_*` directory for the Navier–Stokes experiments.
 
-## Running the Experiments
+## Requirements
 
-The numerical experiments can be executed from the corresponding scripts in the `experiments/` directory.
-
-For example:
+Use Python 3.10 or newer with Jupyter and the following packages:
 
 ```bash
-python experiments/<experiment_name>.py
+pip install jupyter numpy scipy matplotlib pandas torch
 ```
 
-Specific parameters, model configurations, and training options are described in the corresponding experiment files.
+The notebooks use PyTorch for the synthetic, PINN, and XPINN models. CPU execution is supported; a compatible GPU-enabled 
+PyTorch installation can substantially reduce the runtime of the Navier–Stokes experiments.
 
-## Reproducibility
+## Running the simulations
 
-The repository contains the code required to reproduce the numerical experiments presented in the associated work.
+From this directory, launch Jupyter:
 
-Whenever applicable, configuration files specify:
-
-* model architecture;
-* optimization parameters;
-* objective weights;
-* initialization;
-* number of training iterations;
-* numerical discretization;
-* random seeds.
-
-## Citation
-
-```bibtex
-@article{biccari2026bi,
-  title={Bi-HYCO: Bi-Objective Cooperative Learning for PDE Parameter Identification under Fragmented Observations},
-  author={Biccari, Umberto and Chen, Jun and Morales, Roberto and Zuazua, Enrique},
-  journal={arXiv preprint arXiv:2609.06511},
-  year={2026}
-}
+```bash
+jupyter notebook
 ```
 
-## Contact
+Run `Experiment1.ipynb` from top to bottom for the elliptic transmission study, then run `Experiment2 NS.ipynb` for the 
+Navier–Stokes study. The `BI HYCO` notebooks are alternative variants of the same respective workflows.
 
-For questions, comments, or suggestions regarding the implementation, please contact the authors or open an issue in this repository.
+The Navier–Stokes notebooks default to `fast_mode: true`, which uses reduced settings for exploratory execution. 
+Set `fast_mode: false` in the configuration cell to use the longer paper-style training schedule. The elliptic notebook contains noise levels, scalarization weights, mesh resolution, and training rounds in its setup cells; reduce these values for faster exploratory runs.
+
+## Reference
+
+U. Biccari, J. Chen, R. Morales, and E. Zuazua, *Bi-HYCO: Bi-Objective Cooperative Learning for PDE Parameter 
+Identification under Fragmented Observations*, 2026. 
+The manuscript is available on [arXiv:2609.06511](https://arxiv.org/abs/2609.06511).  
+
+## Funding
+
+This project has received funding from the European Research Council (ERC) under the European Union's Horizon Europe 
+research and innovation programme (grant agreement No. 101096251, CoDeFeL).
