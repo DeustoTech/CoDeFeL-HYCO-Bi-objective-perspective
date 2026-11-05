@@ -417,7 +417,7 @@ For the two-coefficient Bi-HYCO and XPINN routines, increasing the training budg
 
 Preserve the per-run manifests, selected models, histories, observation datasets, references, and environment information together with the aggregate tables. Aggregate CSVs alone do not describe the complete execution configuration.
 
-## 10. Optional diagnostics and earlier material
+## 10. Optional diagnostics
 
 ### E6: coordinator diagnostic
 
