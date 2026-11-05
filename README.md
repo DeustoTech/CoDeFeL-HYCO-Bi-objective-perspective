@@ -432,19 +432,6 @@ The archived E8 perturbation amplitudes are **12.041707207169232** for 8 paramet
 
 E8 timings have a different scope: they include final selected-model evaluation, and E8-GN includes its regularization-grid search. Its field names and physical regularization also differ from E0-E7. Use the E8 outputs and implementation when analyzing that extension rather than merging its timings or errors into the main protocol unchanged. The current E8 manifests do not explicitly record the alpha factors, although the implementation uses the shared alpha constants.
 
-### Earlier standalone notebooks
-
-The repository also retains earlier workflows:
-
-| Notebook | Earlier study |
-|---|---|
-| `Experiment1.ipynb` | Elliptic workflow |
-| `Experiment1 - BI HYCO.ipynb` | Elliptic Bi-HYCO variant |
-| `Experiment2 NS.ipynb` | Annular Navier-Stokes workflow |
-| `Experiment2 BI HYCO.ipynb` | Navier-Stokes Bi-HYCO variant |
-
-Their settings and output directories belong to those earlier workflows. Use the E0-E7 package for the current manuscript's elliptic tables. Navier-Stokes results and the optional E6/E8 diagnostics are not additional experiments reported in this version of the manuscript.
-
 The practical experiments use Adam, stochastic samples, and averaging of positive physical coefficients. The deterministic coordinator convergence theorem concerns a distinct iteration under stated assumptions; the numerical protocol is not a verification of those assumptions. E7 provides a local linearized physical sensitivity analysis, not a uniform identifiability result.
 
 ## 11. Citation and funding
