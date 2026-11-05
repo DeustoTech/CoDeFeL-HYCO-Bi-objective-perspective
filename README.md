@@ -224,7 +224,6 @@ Two copies begin with the same physical coefficients $(0.5,0.5)$ and the same in
 |---|---|
 | Synthetic network | Two spatial inputs, four hidden layers of width 96, `tanh`, one scalar output |
 | Initialization | Xavier-normal weights; zero biases |
-| Positive coefficients | $a_i=\operatorname{softplus}(r_i)+10^{-4}$ |
 | Communication rounds | 20,000 |
 | Local Adam steps per unit | 2 |
 | Initial learning rates | $5\times10^{-3}$ for physical coordinates; $8\times10^{-4}$ for network parameters |
