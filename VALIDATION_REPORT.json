@@ -1,0 +1,39 @@
+{
+  "scope": "Functionality/integrity tests on reduced data; no new full-resolution scientific training.",
+  "integration": {
+    "integration_smoke": "passed",
+    "existing_seeds_reused": [
+      7,
+      11,
+      23
+    ],
+    "new_seeds_tested": [
+      37,
+      53
+    ],
+    "completed_smoke_runs": 15,
+    "existing_file_bytes_unchanged": true,
+    "existing_files_independently_hashed": 265,
+    "mean_and_ddof1_std_verified": true,
+    "source_hash_verified": true,
+    "old_seed_training_blocked": true,
+    "incomplete_aggregation_refused": true,
+    "completed_methods_not_retrained_or_reevaluated": true,
+    "missing_old_checkpoint_refused": true,
+    "changed_old_configuration_refused": true,
+    "sensitivity_diagnostics_for_all_five_seeds": true,
+    "summary_png_600dpi_verified": true,
+    "elapsed_smoke_test_seconds": 19.73873257637024,
+    "full_new_pilot_trainings_executed": false
+  },
+  "resume_and_notebook": {
+    "bihyco_resume_matches_continuous": true,
+    "xpinn_c_resume_matches_continuous": true,
+    "jupyter_notebook_full_smoke_execution": "passed",
+    "notebook_elapsed_seconds": 21.26647400856018,
+    "no_full_pilot_training_executed": true
+  },
+  "frozen_original_source_sha256": "4f5dd7a782f6e72faddae4ead65bdb2ed930867f09b0c6ce8269ece7d665ef97",
+  "new_runner_sha256": "773de82158308ea74541b0802603d7b93e725ad3e8dd3152605833ea4f0a8b7f",
+  "full_pilot_seeds_37_and_53_executed_here": false
+}
