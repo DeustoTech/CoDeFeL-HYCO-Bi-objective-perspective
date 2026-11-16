@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lrrrr}
+\toprule
+Output & $100e_u(Q)$ & $100e_u(T)$ & $10^3V_{\mathrm{te}}$ & Time (s) \\
+\midrule
+GN-DIST & $11.38 \pm 0.04$ & $9.75 \pm 1.14$ & $20.086 \pm 3.557$ & $8.6 \pm 2.7$ \\
+Bi-HYCO-PHY & $11.69 \pm 0.07$ & $10.19 \pm 0.65$ & $21.962 \pm 4.002$ & $8995.2 \pm 1357.4$ \\
+Bi-HYCO-SYN & $9.68 \pm 0.24$ & $9.95 \pm 0.68$ & $13.792 \pm 1.099$ & --- \\
+XPINN-C & $7.34 \pm 0.22$ & $13.06 \pm 2.14$ & $7.948 \pm 0.537$ & $734.4 \pm 45.8$ \\
+\bottomrule
+\end{tabular}
+\caption{State reconstruction and serial computational cost: mean $\pm$ sample standard deviation over five seeds. Bi-HYCO-PHY and Bi-HYCO-SYN use separate physical- and neural-validation checkpoints. XPINN-C denotes only the direct neural prediction. Bi-HYCO has a single training cost. Timing excludes reference preparation, final post-processing, and the separately timed sensitivity and fixed-gradient diagnostics.}
+\label{tab:ac-five-seed-states}
+\end{table}

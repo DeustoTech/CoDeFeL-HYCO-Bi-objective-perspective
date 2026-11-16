@@ -1,0 +1,5 @@
+Sensitivities are post-training, local diagnostics. Raw and RMS-normalized maps are distinct.
+Direction vectors are preserved per seed, not naively averaged; their signs are not intrinsic.
+Rank, conditioning and interaction gains do not prove globally unbiased parameter recovery.
+The IC-free and IC-penalized interaction calculations and all SVD tolerances are retained.
+The local GN-unit1 control is not a fourth method in the principal comparison.

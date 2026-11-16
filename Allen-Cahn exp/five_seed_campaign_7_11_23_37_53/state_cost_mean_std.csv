@@ -1,0 +1,5 @@
+Output,Space-time error (%),Final-time error (%),Test MSE,Time (s),Selection
+GN-DIST,11.38 ± 0.04,9.75 ± 1.14,2.009e-02 ± 3.557e-03,8.6 ± 2.7,physical validation
+Bi-HYCO-PHY,11.69 ± 0.07,10.19 ± 0.65,2.196e-02 ± 4.002e-03,8995.2 ± 1357.4,physical validation
+Bi-HYCO-SYN,9.68 ± 0.24,9.95 ± 0.68,1.379e-02 ± 1.099e-03,—,neural validation
+XPINN-C,7.34 ± 0.22,13.06 ± 2.14,7.948e-03 ± 5.365e-04,734.4 ± 45.8,neural validation

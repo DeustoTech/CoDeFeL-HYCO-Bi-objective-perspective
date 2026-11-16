@@ -1,0 +1,2 @@
+Dots: seeds (7, 11, 23, 37, 53), left to right within each method. Squares/error bars: mean +/- sample SD.
+All images use 600 dpi; titles are intentionally omitted. Relative errors are percentages.

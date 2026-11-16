@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lrrrr}
+\toprule
+Method & $100e_\nu$ & $100e_\alpha$ & $100e_\gamma$ & $100e_{\alpha,\mathrm{full}}$ \\
+\midrule
+GN-DIST & $2.38 \pm 0.73$ & $48.23 \pm 8.47$ & $48.29 \pm 8.48$ & $52.20 \pm 3.32$ \\
+Bi-HYCO & $2.58 \pm 0.45$ & $7.22 \pm 3.00$ & $7.72 \pm 2.87$ & $45.82 \pm 0.34$ \\
+XPINN-C & $12.18 \pm 0.67$ & $36.80 \pm 0.12$ & $38.76 \pm 0.23$ & $60.66 \pm 0.06$ \\
+\bottomrule
+\end{tabular}
+\caption{Parameter errors under model misspecification ($\delta_m=0.12$), without observation noise. Values are means $\pm$ sample standard deviations over five paired seeds. The joint error is $e_\gamma=(e_\nu^2+e_\alpha^2)^{1/2}$. Neural-method parameters are selected by physical validation.}
+\label{tab:ac-five-seed-parameters}
+\end{table}
